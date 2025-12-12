@@ -53,7 +53,7 @@ GROUP BY Color;
 ### 2. Systemic vs. Localized Returns
 To determine if returns were due to logistics (e.g., a bad courier in Delhi) or the product itself, I analyzed return rates by location. The rate was consistent (~48%) across all cities, proving the issue was systemic (product fit/sizing).
 
-```
+```sql
 
 -- Return Rate by Location
 SELECT Location, 
@@ -65,16 +65,16 @@ GROUP BY Location;
 ### 3. Emerging Growth
 Identified SKU POLO-66138 as the top gaining product, jumping from zero visibility in 2024 to significant traction in 2025.
 
-###🚀 Recommendations
+### Recommendations
 Based on the data, I proposed the following strategy to the stakeholders:
 
-Immediate Action: Pause sales of the Black variant to stop brand damage.
+- Immediate Action: Pause sales of the Black variant to stop brand damage.
 
-Audit: Conduct a full audit of the sizing chart (primary suspect for the 48% return rate).
+- Audit: Conduct a full audit of the sizing chart (primary suspect for the 48% return rate).
 
-Inventory Shift: Expand the "Red" product line, which drives high volume and high satisfaction.
+- Inventory Shift: Expand the "Red" product line, which drives high volume and high satisfaction.
 
-Target Metrics: Aim to reduce return rate to 25%, which is projected to increase profit margins by 23%.
+- Target Metrics: Aim to reduce return rate to 25%, which is projected to increase profit margins by 23%.
 
 ### Project Structure
 - polo_tshirt_cleaned_dataset.csv: The raw dataset containing 5,120 records.
