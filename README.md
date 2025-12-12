@@ -77,13 +77,13 @@ Based on the data, I proposed the following strategy to the stakeholders:
 - Target Metrics: Aim to reduce return rate to 25%, which is projected to increase profit margins by 23%.
 
 ### Project Structure
-- polo_tshirt_cleaned_dataset.csv: The raw dataset containing 5,120 records.
+- `polo_tshirt_cleaned_dataset.csv`: The raw dataset containing 5,120 records.
 
-- polo_shirt_sql_queries.sql: Complete SQL script containing all analytical queries.
+- `polo_shirt_sql_queries.sql`: Complete SQL script containing all analytical queries.
 
-- PoloMax_Product_Analysis.pdf: Final presentation deck presented to stakeholders.
+- `PoloMax_Product_Analysis.pdf`: Final presentation deck presented to stakeholders.
 
-- SQL_POLO_SHIRT_ANALYSIS_REPORT.docx: Detailed written report of findings.
+- `SQL_POLO_SHIRT_ANALYSIS_REPORT.docx`: Detailed written report of findings.
 
 
 
