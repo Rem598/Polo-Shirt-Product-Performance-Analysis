@@ -83,14 +83,7 @@ Timeframe segmentation — confirmed the Black variant issue persists across tim
 
 ---
 
-## Files
 
-- `polo_tshirt_cleaned_dataset.csv` — 5,120 transaction records.
-- `polo_shirt_sql_queries.sql` — Full query library.
-- `PoloMax_Product_Analysis.pdf` — Stakeholder presentation.
-- `SQL_POLO_SHIRT_ANALYSIS_REPORT.docx` — Detailed written report.
-
----
 
 ## Tools
 
