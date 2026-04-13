@@ -6,7 +6,7 @@ Diagnosing a 48% return rate using SQL segmentation and root cause analysis.
 
 ## The Question
 
-A fashion e-commerce brand is seeing 48% of polo shirt orders returned. That is not a logistics problem and it is not a sizing chart problem. Those explanations are guesses. This analysis starts from the data.
+A fashion e-commerce brand is seeing 48% of polo shirt orders returned. What is the root cause?
 
 **Business problem:** PoloMax is experiencing a critically high return rate (48.09%) and mediocre customer satisfaction (3.02 average rating). Profitability is declining. The root cause is unknown.
 
