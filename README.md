@@ -24,7 +24,7 @@ The return rate is not a company-wide problem. It is a single-variant problem.
 
 Segmenting 5,120 transactions by color, size, and timeframe isolated the issue to the Black colorway, which consistently received the lowest customer ratings (2.98 average) across all locations. Return rates were uniform across cities at approximately 48%, which ruled out a logistics or regional fulfillment explanation. The problem was in the product itself.
 
-The Black variant has a manufacturing defect — most likely in the fabric or dye process.
+The Black variant has a manufacturing defect - most likely in the fabric or dye process.
 
 ---
 
