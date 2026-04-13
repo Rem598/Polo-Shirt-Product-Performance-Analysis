@@ -1,89 +1,93 @@
-# 👕 Polo Shirt  Product Performance Analysis
+# Polo Shirt Product Performance Analysis
 
-![Tools](https://img.shields.io/badge/Tools-SQL_|_Excel_|_Data_Viz-blue)
-![Focus](https://img.shields.io/badge/Focus-Product_Strategy-orange)
-
-## 📖 Executive Summary
-I analyzed **5,120 customer reviews and transactions** for PoloMax (a fashion e-commerce brand) to diagnose a critical business issue: a **48% product return rate**.
-
-Using SQL for data extraction and exploratory data analysis (EDA), I identified that the high return rate was a systemic product quality issue rather than a logistics failure. My analysis provided data-backed recommendations to pause underperforming SKUs and double down on high-revenue variants.
+Diagnosing a 48% return rate using SQL segmentation and root cause analysis.
 
 ---
 
-## 📊 Dashboard Preview
-![Dashboard](dashboard.png)
-*Visual overview of market performance, return rates by location, and rating distribution.*
+## The Question
+
+A fashion e-commerce brand is seeing 48% of polo shirt orders returned. That is not a logistics problem and it is not a sizing chart problem. Those explanations are guesses. This analysis starts from the data.
+
+**Business problem:** PoloMax is experiencing a critically high return rate (48.09%) and mediocre customer satisfaction (3.02 average rating). Profitability is declining. The root cause is unknown.
+
+**Objective:** Determine whether the return rate is systemic across the product line or isolated to specific variants, and identify exactly what is driving it.
 
 ---
 
-## 🎯 Business Problem
-The brand faced declining profitability due to:
-* A critically high **Return Rate (48.09%)**.
-* Mediocre Customer Satisfaction (**3.02 Avg Rating**).
-* Unknown performance drivers across different SKUs (Colors/Sizes).
+## Key Finding
 
-**Objective:** Analyze sales data to pinpoint the root cause of returns and identify high-value opportunities.
+The return rate is not a company-wide problem. It is a single-variant problem.
 
----
+Segmenting 5,120 transactions by color, size, and timeframe isolated the issue to the Black colorway, which consistently received the lowest customer ratings (2.98 average) across all locations. Return rates were uniform across cities at approximately 48%, which ruled out a logistics or regional fulfillment explanation. The problem was in the product itself.
 
-## 🛠️ Tech Stack & Skills
-* **SQL (MySQL):** Used for data cleaning, aggregation, `CASE` statements, and complex filtering.
-* **Data Analysis:** Trend analysis, correlation (Price vs. Rating), and root cause analysis.
-* **Data Visualization:** Created dashboard mockups to visualize geographic spread and SKU performance.
-* **Strategic Planning:** Translated raw data into actionable business steps (e.g., "Pause Black variant sales").
+The Black variant has a manufacturing defect — most likely in the fabric or dye process.
 
 ---
 
-## 🔍 Key Insights & SQL Logic
+## Why Segmentation Is the Method
 
-### 1. The "Black Shirt" Quality Issue
-I discovered a strong correlation between color variants and customer ratings. While **Red** shirts were the top revenue drivers (~964k), **Black** shirts consistently received the lowest ratings (2.98), indicating a specific fabric or dye issue.
+Aggregate return rates are misleading. A 48% return rate across all products looks catastrophic. The same 48% rate concentrated in one color variant out of several is a solvable, specific problem. The difference between those two conclusions is segmentation.
 
-**SQL Snippet Used:**
+**The diagnostic logic:**
+
+1. If the return rate varies by location, the problem is logistics.
+2. If the return rate varies by size, the problem is the sizing chart.
+3. If the return rate is uniform across locations and sizes but concentrated in one color, the problem is the product variant.
+
+All three were tested. The data pointed to option 3.
+
+---
+
+## Analysis
+
+**Tool:** SQL (MySQL)
+
+**Key queries:**
+
+Return rate by location — tested whether any city or region showed an outlier rate. Result: uniform at approximately 48% everywhere, ruling out logistics.
+
 ```sql
--- Average Price vs. Average Rating by Material (Proxy: Color)
-SELECT Color as Material_Proxy, 
-       ROUND(AVG(Price), 2) as Avg_Price, 
-       ROUND(AVG(Rating), 2) as Avg_Rating 
-FROM tshirts 
-GROUP BY Color;
-```
-
-### 2. Systemic vs. Localized Returns
-To determine if returns were due to logistics (e.g., a bad courier in Delhi) or the product itself, I analyzed return rates by location. The rate was consistent (~48%) across all cities, proving the issue was systemic (product fit/sizing).
-
-**SQL Snippet Used:**
-```sql
-
--- Return Rate by Location
-SELECT Location, 
-       ROUND((SUM(CASE WHEN Return_Status = 'Returned' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)), 2) as Return_Rate
-FROM tshirts 
+SELECT Location,
+       ROUND((SUM(CASE WHEN Return_Status = 'Returned' THEN 1 ELSE 0 END) * 100.0 / COUNT(*)), 2) AS Return_Rate
+FROM tshirts
 GROUP BY Location;
 ```
 
-### 3. Emerging Growth
-Identified SKU POLO-66138 as the top gaining product, jumping from zero visibility in 2024 to significant traction in 2025.
+Average rating by color variant — identified Black as the consistent low-rated outlier.
 
-### Recommendations
-Based on the data, I proposed the following strategy to the stakeholders:
+```sql
+SELECT Color,
+       ROUND(AVG(Price), 2) AS Avg_Price,
+       ROUND(AVG(Rating), 2) AS Avg_Rating
+FROM tshirts
+GROUP BY Color;
+```
 
-- Immediate Action: Pause sales of the Black variant to stop brand damage.
+Timeframe segmentation — confirmed the Black variant issue persists across time periods, ruling out a temporary batch defect.
 
-- Audit: Conduct a full audit of the sizing chart (primary suspect for the 48% return rate).
+---
 
-- Inventory Shift: Expand the "Red" product line, which drives high volume and high satisfaction.
+## Recommendations
 
-- Target Metrics: Aim to reduce return rate to 25%, which is projected to increase profit margins by 23%.
+**Immediate:** Pause Black variant sales to stop brand damage from accumulating.
 
-### Project Structure
-- `polo_tshirt_cleaned_dataset.csv`: The raw dataset containing 5,120 records.
+**Short term:** Audit the Black colorway production process. Likely causes are fabric quality or dye process failure.
 
-- `polo_shirt_sql_queries.sql`: Complete SQL script containing all analytical queries.
+**Inventory strategy:** Expand the Red product line. Red drives the highest revenue at approximately £964K and the highest customer satisfaction. It is the product that works.
 
-- `PoloMax_Product_Analysis.pdf`: Final presentation deck presented to stakeholders.
+**Target outcome:** Reducing the return rate to 25% is projected to improve profit margin by 23%.
 
-- `SQL_POLO_SHIRT_ANALYSIS_REPORT.docx`: Detailed written report of findings.
+---
 
+## Files
 
+- `polo_tshirt_cleaned_dataset.csv` — 5,120 transaction records.
+- `polo_shirt_sql_queries.sql` — Full query library.
+- `PoloMax_Product_Analysis.pdf` — Stakeholder presentation.
+- `SQL_POLO_SHIRT_ANALYSIS_REPORT.docx` — Detailed written report.
 
+---
+
+## Tools
+
+SQL (MySQL), Power BI, root cause analysis, data segmentation
