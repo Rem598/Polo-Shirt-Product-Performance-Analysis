@@ -16,6 +16,10 @@ A fashion e-commerce brand is seeing 48% of polo shirt orders returned. What is 
 
 ## Key Finding
 
+---
+![Dashboard](https://github.com/Rem598/Polo-Shirt-Product-Performance-Analysis/blob/main/dashboard.png)
+---
+
 The return rate is not a company-wide problem. It is a single-variant problem.
 
 Segmenting 5,120 transactions by color, size, and timeframe isolated the issue to the Black colorway, which consistently received the lowest customer ratings (2.98 average) across all locations. Return rates were uniform across cities at approximately 48%, which ruled out a logistics or regional fulfillment explanation. The problem was in the product itself.
